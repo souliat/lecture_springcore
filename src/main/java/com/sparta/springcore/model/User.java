@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter // get 함수를 일괄적으로 만들어줍니다.
 @NoArgsConstructor // 기본 생성자를 만들어줍니다.
 @Entity // DB 테이블 역할을 합니다.
-public class Users {
+public class User {
 
     // ID가 자동으로 생성 및 증가합니다. Primary Key(PK)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,7 +32,7 @@ public class Users {
     @Enumerated(value = EnumType.STRING) // 저장 될때는 이넘을 스트링으로 변환하여 저장해주겠다는 말
     private UserRoleEnum role;
 
-    public Users(String username, String password, String email, UserRoleEnum role) {
+    public User(String username, String password, String email, UserRoleEnum role) {
         this.username = username;
         this.password = password;
         this.email = email;

@@ -23,11 +23,14 @@
     <form action="/user/login" method="post">
       <div class="login-id-label">아이디</div>
       <input type="text" name="username" class="login-input-box">
+      <!-- 스프링 시큐리티 로그인 구현 시, ID는 프론트에서 넘어올 때 무조건 username으로 명명되어야 함. -->
 
       <div class="login-id-label">비밀번호</div>
       <input type="password" name="password" class="login-input-box">
+      <!-- 스프링 시큐리티 로그인 구현 시, 비밀번호는 프론트에서 넘어올 때 무조건 password로 명명되어야 함. -->
 
       <button id="login-id-submit">로그인</button>
+      <!--로그인버튼 누르면 /user/login POST 요청이 WebSecurityConfig의 .loginProcessingUrl("/user/login") 로 이동.  -->
     </form>
     <div id="login-failed" style="display:none" class="alert alert-danger" role="alert">로그인에 실패하였습니다.</div>
   </div>
