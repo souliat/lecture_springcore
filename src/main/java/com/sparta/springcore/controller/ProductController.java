@@ -50,4 +50,9 @@ public class ProductController {
 
         return productService.getProducts(userId);
     }
+
+    @GetMapping("/api/admin/products")
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
+    }
 }
