@@ -29,6 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // 회원 관리 처리 API (POST /user/**) 에 대해 CSRF 무시
+        // 이거 없이 하면 새로운 POST요청 api에 대해서 403 에러가 뜨기 떄문에 disable 처리 해줌 2-10강
         http.csrf().disable();
 
         http.authorizeRequests()

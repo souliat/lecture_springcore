@@ -1,21 +1,26 @@
 package com.sparta.springcore.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sparta.springcore.dto.SignupRequestDto;
+import com.sparta.springcore.service.KakaoUserService;
 import com.sparta.springcore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
+    private final KakaoUserService kakaoUserService;
 
     @Autowired // UserService DI(의존성 주입) 받는 부분
-    public UserController(UserService userService) {
+    public UserController(UserService userService, KakaoUserService kakaoUserService) {
         this.userService = userService;
+        this.kakaoUserService = kakaoUserService;
     }
 
     // 회원 로그인 페이지
@@ -35,5 +40,11 @@ public class UserController {
     public String registerUser(SignupRequestDto requestDto) {
         userService.registerUser(requestDto);
         return "redirect:/user/login";
+    }
+
+    @GetMapping("user/kakao/callback")
+    public String kakaoLogin(@RequestParam String code) throws JsonProcessingException {
+        kakaoUserService.kakaoLogin(code);
+        return "redirect:/";
     }
 }

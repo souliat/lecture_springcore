@@ -32,10 +32,22 @@ public class User {
     @Enumerated(value = EnumType.STRING) // 저장 될때는 이넘을 스트링으로 변환하여 저장해주겠다는 말
     private UserRoleEnum role;
 
+    @Column(unique = true) // nullable 안적으면 true가 디폴트 값.
+    private Long kakaoId;
+
     public User(String username, String password, String email, UserRoleEnum role) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
+        this.kakaoId = null;
+    }
+
+    public User(String username, String password, String email, UserRoleEnum role, Long kakaoId) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.kakaoId = kakaoId;
     }
 }
