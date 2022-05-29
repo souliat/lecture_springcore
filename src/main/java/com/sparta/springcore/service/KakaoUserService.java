@@ -115,9 +115,19 @@ public class KakaoUserService {
     private User registerKakaoUserIfNeeded(KakaoUserInfoDto kakaoUserInfo) {
         // 3. DB에 중복된 Kakao Id 가 있는지 확인하고 회원가입 진행
         Long kakaoId = kakaoUserInfo.getId();
-        User kakaoUser = userRepository.findByKakaoId(kakaoId)
-                .orElse(null);
+        User kakaoUser = userRepository.findByKakaoId(kakaoId).orElse(null);
         if (kakaoUser == null) {
+
+            // 동일 이메일을 가진 기존 회원이 존재하는지 여부 체크
+            String kakaoEmail = kakaoUserInfo.getEmail();
+            User sameEmailUser = userRepository.findByEmail(kakaoEmail).orElse(null);
+
+            if (sameEmailUser != null) {
+                sameEmailUser.setKakaoId(kakaoId);
+                userRepository.save(sameEmailUser);
+                return sameEmailUser;
+            }
+
             // 회원가입
             // username: kakao nickname
             String nickname = kakaoUserInfo.getNickname();

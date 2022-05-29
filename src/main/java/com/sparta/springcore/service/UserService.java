@@ -25,6 +25,7 @@ public class UserService {
     public void registerUser(SignupRequestDto requestDto) {
         // 회원 ID 중복 확인
         String username = requestDto.getUsername();
+        // DB에서 해당 username을 사용하는 기존 회원이 있는지 체크
         Optional<User> found = userRepository.findByUsername(username);
         if (found.isPresent()) {
             throw new IllegalArgumentException("중복된 사용자 ID 가 존재합니다.");
