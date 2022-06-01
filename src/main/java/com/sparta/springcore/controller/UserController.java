@@ -26,14 +26,12 @@ public class UserController {
     // 회원 로그인 페이지 이동
     @GetMapping("/user/login")
     public String login() {
-
         return "login";
     }
 
     // 회원 가입 페이지 이동
     @GetMapping("/user/signup")
     public String signup() {
-
         return "signup";
     }
 

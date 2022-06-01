@@ -133,6 +133,7 @@ public class KakaoUserService {
             String nickname = kakaoUserInfo.getNickname();
 
             // password: random UUID
+
             String password = UUID.randomUUID().toString();
             String encodedPassword = passwordEncoder.encode(password);
 
