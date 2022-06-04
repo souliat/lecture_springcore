@@ -22,7 +22,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void registerUser(SignupRequestDto requestDto) {
+    public User registerUser(SignupRequestDto requestDto) {
         // 회원 ID 중복 확인
         String username = requestDto.getUsername();
         // DB에서 해당 username을 사용하는 기존 회원이 있는지 체크
@@ -46,6 +46,7 @@ public class UserService {
 
         User user = new User(username, password, email, role);
         userRepository.save(user);
+        return user;
     }
 
 }
