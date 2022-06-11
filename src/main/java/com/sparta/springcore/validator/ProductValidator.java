@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProductValidator {
-
     public static void validateProductInput(ProductRequestDto requestDto, Long userId) {
         if (userId == null || userId <= 0) {
             throw new IllegalArgumentException("회원 Id 가 유효하지 않습니다.");
